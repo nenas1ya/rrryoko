@@ -16,7 +16,8 @@ async def main():
         try:
             await asyncio.sleep(5)
             api_url= 'https://www.googleapis.com/youtube/v3/search?'
-            search_url = f'{api_url}key={YTtok}&channelId={CHANEL_ID}&part=snippet,id&order=date&maxResults=1'
+            search_url = f'''{api_url}key={YTtok}&channelId={CHANEL_ID}
+                            &part=snippet,id&order=date&maxResults=1'''
             r = requests.get(search_url)
             last_video = r.json()['items'][0]['id']['videoId']
             if last_video not in watched:
@@ -25,7 +26,7 @@ async def main():
                 #decorated_link = utils.markdown.link(title='uwu',url=link) -> [title](url) ? кликабельный title
                 await send_message(-1001547382897, f"новое видево\n{link}")
                 watched.append(last_video)
-        except e as Exception: print(e)
+        except Exception as e: print(e)
 
 
 loop = asyncio.get_event_loop()
