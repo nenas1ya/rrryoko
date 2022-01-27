@@ -14,9 +14,8 @@ print('uwu start')
 async def main():
     while True:
         try:
-            await asyncio.sleep(360)
             api_url= 'https://www.googleapis.com/youtube/v3/search?'
-            search_url = f'{api_url}key={YTtok}&channelId={CHANEL_ID}part=id&order=date&maxResults=1'
+            search_url = f'{api_url}key={YTtok}&channelId={CHANEL_ID}&part=id&order=date&maxResults=1'
             r = requests.get(search_url)
             last_video = r.json()['items'][0]['id']['videoId']
             if last_video not in watched:
@@ -30,6 +29,8 @@ async def main():
             print(search_url)
             print('-----')
             pprint(r.json())
+
+        await asyncio.sleep(3600)
 
 
 loop = asyncio.get_event_loop()
